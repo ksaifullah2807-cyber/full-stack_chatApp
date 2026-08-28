@@ -18,6 +18,7 @@ jobs:
             echo "SSH username is NOT ubuntu"
             exit 1
           fi
+          
       - name: Prepare SSH key
         run: |
           echo "${{ secrets.EC2_SSH_KEY_B64 }}" | base64 -d > /tmp/chatapp-key.pem
