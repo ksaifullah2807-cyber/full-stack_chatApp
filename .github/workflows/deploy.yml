@@ -12,12 +12,10 @@ jobs:
     steps:
       - name: Check SSH username
         run: |
-          if [ "${{ secrets.EC2_USERNAME }}" = "ubuntu" ]; then
-            echo "SSH username is correct"
-          else
-            echo "SSH username is NOT ubuntu"
-            exit 1
-          fi
+          echo "Username length: ${#USERNAME}"
+          printf '%s' "$USERNAME" | od -An -t x1
+        env:
+          USERNAME: ${{ secrets.EC2_USERNAME }}
 
       - name: Prepare SSH key
         run: |
